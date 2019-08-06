@@ -1,0 +1,25 @@
+#profile{
+    float: left;
+    width: 40%;
+    margin: 0% 0% 2% 30%;
+    padding: 2%;
+}
+
+#profile form{
+    float: left;
+    border: 1px solid lightgray;
+    width: 100%;
+    padding:4%;
+}
+
+#profile form div{
+    width: 100%;
+}
+
+#profile form div div{
+    width: 60%;
+}
+
+#profile form button {
+    margin-top: 3%;
+}

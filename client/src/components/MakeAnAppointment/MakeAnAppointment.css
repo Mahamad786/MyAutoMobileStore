@@ -1,0 +1,32 @@
+#appointment{
+    float: left;
+    width: 40%;
+    margin: 4% 0% 2% 30%;
+    border: 1px solid lightgray;
+    padding: 2%;
+}
+
+#appointment form{
+    float: left;
+    width: 100%;
+}
+
+#appointment form div{
+    width: 100%;
+}
+
+#appointment form div div{
+    width: 60%;
+}
+
+#appointment form div div div {
+    width: 100%;
+} 
+
+#appointment form button {
+    margin-top: 5%;
+}
+
+#appointment form .maginTop{
+   margin-top: 3%;
+}

@@ -1,0 +1,23 @@
+#productsDetailViewContainer {
+    float: left;
+    width: 50%;
+    text-align: center;
+    border: 1px solid lightgray;
+    margin-left: 20%;
+    padding: 2% 0px;
+}
+
+#productsDetailViewContainer img{
+    float: none;
+    margin-bottom: 1%;
+}
+
+#productsDetailViewContainer h4{
+    float: none;
+    margin: 2% 0% 4%;
+}
+
+#loginInfo{
+    color: red;
+}
+

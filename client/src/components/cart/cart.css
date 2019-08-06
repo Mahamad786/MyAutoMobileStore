@@ -1,0 +1,42 @@
+.cartContainer{
+    text-align:left;
+    display: flex;
+    margin-bottom: 12%;
+    float: left;
+}
+.cartContainer div{
+    padding-top:20px;
+    width: 250px;
+    float: left;
+    border: 1px solid lightgray;
+    padding: 2%;
+    margin-right: 3%;
+}
+.cartContainer img{
+    width: 200px;
+    height: 200px;
+	margin-right: 40px;
+}
+
+.cartContainer h4{
+    float: left;
+    width: 100%;
+    margin: 4% 0px 10%;
+}
+#checkout{
+    margin-right:35px;
+}
+
+#cart{
+    text-align: center;
+    margin-bottom: 25%;
+}
+
+#cart button{
+    margin-top: 2%;
+}
+
+#noItems{
+    margin-bottom: 30%;
+    text-align: center;
+}

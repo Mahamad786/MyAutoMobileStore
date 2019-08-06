@@ -1,0 +1,17 @@
+.productContainer{
+	text-align: center;
+    float: left;
+    width: 100%;
+}
+.productContainer div{
+	float: left;
+	width: 20%;
+    margin-bottom: 2%;
+}
+
+.productContainer a{
+	float: left;
+    text-decoration: none;
+	border: 1px solid lightgray;
+	padding: 2%;
+}

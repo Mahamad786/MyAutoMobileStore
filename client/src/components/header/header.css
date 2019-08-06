@@ -1,0 +1,62 @@
+header{
+    float: left;
+    width: 100%;
+}
+
+img{
+    width: 9%;
+    float: left;
+}
+
+#searchBox{
+    width: 50%;
+    float: left;
+    margin: 1% 2%;
+}
+
+#user{
+    margin: 1.2% 1% 1%;
+    float: left;
+    width: 35%;
+}
+
+#user a{
+    text-decoration: none;
+    padding-right: 6%;
+    font-weight: 600;
+}
+
+.navigation {
+    background-color: #1976d2;
+    padding: 20px 0px;
+    color: white;
+    float: left;
+    width: 100%;
+  }
+
+.navigation a{
+    padding: 20px 2%;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px 6%;
+}  
+
+.navigation a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #1C355E;
+}
+
+#iconSection{
+    float: left;
+}
+
+#searchByVoice{
+    width:450px;
+}
+
+#searchError{
+    color:red;
+}

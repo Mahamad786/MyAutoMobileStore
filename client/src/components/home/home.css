@@ -1,0 +1,38 @@
+#homePage{
+    float: left;
+    width:100%;
+}
+
+#imageSection{
+    float: left;
+    width:100%;
+}
+
+#imageSection img{
+    float: left;
+    width: 50%;
+    height: 250px;
+}
+
+#recommendedProducts{
+    float: left;
+    width:100%;
+    margin: 4% 0px 1%;
+}
+
+#recommendedProducts div{
+    float: left;
+    width: 20%;
+    margin-bottom: 2%;
+}
+
+#recommendedProducts a{
+    float: left;
+    border: 1px solid lightgray;
+    padding: 2%;
+    text-decoration: none;
+}
+
+#recommendedProducts p{
+    text-align: center;
+}

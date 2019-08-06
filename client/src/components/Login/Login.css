@@ -1,0 +1,36 @@
+#login{
+    float: left;
+    width: 40%;
+    margin: 2% 0% 6% 30%;
+    border: 1px solid lightgray;
+    padding: 2%;
+}
+
+#login form{
+    float: left;
+    width: 100%;
+}
+
+#login form div{
+    width: 100%;
+}
+
+#login form div div{
+    width: 60%;
+}
+
+#login form button {
+    margin-top: 3%;
+    float: left;
+}
+
+#login form a{
+    margin: 5% 0px 0px 17%;
+    float: left;
+}
+
+#loginError{
+    text-align: center;
+    margin: 0px;
+    color: red;
+}
