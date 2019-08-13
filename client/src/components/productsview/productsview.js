@@ -632,8 +632,8 @@ class ProductsView extends Component {
         console.log("selectedProduct....." + this.state.selectedProduct)
         return (
             <section id='productsViewContainer'>
-                <h2>{this.state.selectedProduct}</h2>
-                {viewProducts[this.state.selectedProduct].map(
+                <h2>{JSON.parse(sessionStorage.getItem("selectedProduct"))}</h2>
+                {viewProducts[JSON.parse(sessionStorage.getItem("selectedProduct"))].map(
                     (data) => (
                         <div>
                             <Link className='products' to={`/productdetailview/:${data.id}`} key={data.id} onClick={this.select.bind(this,data)}>

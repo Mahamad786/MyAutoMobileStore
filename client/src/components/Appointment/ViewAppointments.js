@@ -72,7 +72,7 @@ export default class ViewAppointments extends Component {
     render() {
         return (
             <React.Fragment>
-                <Paper>
+                <Paper style={{marginBottom: "20%"}}>
                     <Table>
                         <TableHead>
                             <TableRow>

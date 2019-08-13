@@ -33,6 +33,13 @@ var styles = {
     color: {
         color: "red",
         fontWeight: "bold"
+    },
+    alignment: {
+        position: "fixed",
+        zIndex: "1000",
+        display: "block",
+        width: "20%",
+        top: "50px"
     }
 };
 
@@ -91,7 +98,6 @@ var user, searchItems = [
     }
 ];
 
-var foundItems = [];
 
 //speech recognigation
 let SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition;
@@ -113,8 +119,10 @@ class Header extends Component {
             open: false,
             logout: false,
             voice: "Search Products By Voice",
-            speechError:false,
-            errorMessage:""
+            speechError: false,
+            errorMessage: "",
+            foundItems: [],
+            searchBox: true
         }
     }
 
@@ -127,18 +135,29 @@ class Header extends Component {
         this.setState({ open: false, logout: true })
     }
 
+    select(info) {
+        sessionStorage.setItem("selectedProduct", JSON.stringify(info));
+        this.setState({ searchBox: false });
+    }
+
     handleSearch() {
-        let that=this;
+        let that = this;
         this.setState({ voice: 'Speak Now.For example Brakes,Oils,Batteries etc' })
         recognigation.start();
 
         recognigation.onresult = function (event) {
             let last = event.results.length - 1;
             let text = event.results[last][0].transcript;
-            foundItems = searchItems.filter(product => {
-                return product.name === text
+            let foundItems = searchItems.filter(product => {
+                return product.name.toLowerCase().indexOf(text.toLowerCase()) !== -1;
             })
-            that.setState({ voice: 'You searched  '+text ,speechError:false})
+            that.setState({
+                voice: 'You searched  ' + text,
+                speechError: false,
+                foundItems, searchBox: true,
+                errorMessage: foundItems.length <= 0 ? "Sorry we could not able to find this product item,please try with some other product name" : "",
+                speechError: foundItems.length <= 0 ? true : false
+            })
             console.log("speech text....", text)
         }
 
@@ -147,18 +166,23 @@ class Header extends Component {
         }
 
         recognigation.onerror = function (err) {
-            that.setState({speechError:true,errorMessage:"Could not able to recognize your voice,Please try again"})
+            that.setState({ speechError: true, errorMessage: "Could not able to recognize your voice,Please try again" })
             console.log("speech error")
         }
     }
 
     render() {
         var redirect;
+        let { classes } = this.props;
         if (this.state.logout) {
             redirect = (<Redirect to='/login' />);
         }
 
-        let { classes } = this.props;
+        let items = this.state.foundItems.map(data => {
+            return <MenuItem><Link to={`/productview/:${data.id}`} className={classes.color} onClick={() => this.select(data.name)}>{data.name}</Link></MenuItem>
+        })
+
+
         user = JSON.parse(sessionStorage.getItem("user")) ? JSON.parse(sessionStorage.getItem("user")) : {};
         return (
             <header id='header'>
@@ -182,19 +206,15 @@ class Header extends Component {
                             }
                         />
                     </FormControl>
-                    {foundItems.length >= 1 &&
-                        <Paper>
+                    {this.state.foundItems.length >= 1 &&
+                        <Paper className={this.state.searchBox ? classes.alignment : classes.hide}>
                             <MenuList>
-                                {
-                                    foundItems.map(data => {
-                                        <MenuItem><Link to={`/productview/:${data.id}`} className={classes.color}>{data.name}</Link></MenuItem>
-                                    })
-                                }
+                                {items}
                             </MenuList>
                         </Paper>
                     }
                     {this.state.speechError &&
-                      <p id='searchError'>{this.state.errorMessage}</p>
+                        <p id='searchError'>{this.state.errorMessage}</p>
                     }
                 </section>
                 <section id='user'>
