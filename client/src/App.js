@@ -31,6 +31,7 @@ class App extends Component {
   cartview() {
     console.log(this.props)
     this.props.location = '/Cartview';
+    //latest changes
   }
   render() {
     return (

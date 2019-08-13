@@ -90,6 +90,7 @@ class Product extends Component {
 		}
 	}
 	select(info) {
+		//latest changes
 		sessionStorage.setItem("selectedProduct",JSON.stringify(info));
 	}
 	render() {

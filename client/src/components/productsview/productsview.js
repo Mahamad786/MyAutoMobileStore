@@ -625,6 +625,7 @@ class ProductsView extends Component {
     }
 
     select(info) {
+        //latest changes
         sessionStorage.setItem("selectedDetailViewProduct",JSON.stringify(info));
     }
 
