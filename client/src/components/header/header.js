@@ -140,6 +140,7 @@ class Header extends Component {
         this.setState({ searchBox: false });
     }
 
+    //voice search
     handleSearch() {
         let that = this;
         this.setState({ voice: 'Speak Now.For example Brakes,Oils,Batteries etc' })
