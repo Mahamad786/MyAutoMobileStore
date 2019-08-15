@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import VoiceIcon from '@material-ui/icons/SettingsVoice';
 //import Menu from '@material-ui/core/Menu';
 import './header.css';
+import PopUp from '../popup/PopUp';
 
 
 var styles = {
@@ -112,6 +113,8 @@ recognigation.grammers = grammerList;
 recognigation.lang = "en-US";
 recognigation.interimResults = false;
 
+var logoutTime = 20, setTime;
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -122,8 +125,59 @@ class Header extends Component {
             speechError: false,
             errorMessage: "",
             foundItems: [],
-            searchBox: true
+            searchBox: true,
+            success: false,
+            message:"",
+            title:""
         }
+    }
+
+    componentDidMount() {
+        document.addEventListener("click",this.resetTimer.bind(this));
+        document.addEventListener("mouseover",this.resetTimer.bind(this));
+        document.addEventListener("mousedown",this.resetTimer.bind(this));
+        document.addEventListener("keydown",this.resetTimer.bind(this));
+        document.addEventListener("mousemove",this.resetTimer.bind(this));
+        this.setTimer()
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("click",this.resetTimer.bind(this));
+        document.removeEventListener("mouseover",this.resetTimer.bind(this));
+        document.removeEventListener("mousedown",this.resetTimer.bind(this));
+        document.removeEventListener("keydown",this.resetTimer.bind(this));
+        document.removeEventListener("mousemove", this.resetTimer.bind(this));
+    }
+
+    resetTimer() {
+        logoutTime = 20;
+        clearInterval(setTime);
+        if(user.authenticated)  this.setTimer();      
+    }
+
+    setTimer() {
+        setTime = setInterval(() => {
+            if (logoutTime === 0) {
+                sessionStorage.setItem("user",JSON.stringify(Object.assign({},user,{authenticated:false})))
+                this.setState({success:false,logout : true})
+                clearInterval(setTime)
+            }
+
+            if (logoutTime === 5) {
+                this.setState({success:true,title:"Session out warning",message:"Your session is going to expire in "+logoutTime +"minutes,if you wish to continue the session please click on continue option"})
+            }
+            logoutTime = logoutTime - 1;
+        }, 2000)
+    }
+
+    handleClose() {
+        sessionStorage.setItem("user",JSON.stringify(Object.assign({},user,{authenticated:false})))
+        this.setState({ success: false, logout:true })
+    }
+
+    handleContinue(){
+        this.resetTimer();
+        this.setState({success:false})
     }
 
     handleToggle() {
@@ -143,7 +197,7 @@ class Header extends Component {
     //voice search
     handleSearch() {
         let that = this;
-        this.setState({ voice: 'Speak Now.For example Brakes,Oils,Batteries etc' })
+        this.setState({ voice: 'Speak Now.For example Brakes,Batteries etc' })
         recognigation.start();
 
         recognigation.onresult = function (event) {
@@ -246,6 +300,9 @@ class Header extends Component {
                     <Link to='/research'>Car Care</Link>
                 </section>
                 {redirect}
+                <PopUp open={this.state.success} handleClose={this.handleClose.bind(this)} 
+                       message={this.state.message} title={this.state.title} continue={true} cancel={true}
+                       handleContinue={this.handleContinue.bind(this)} />
             </header>
         )
     }

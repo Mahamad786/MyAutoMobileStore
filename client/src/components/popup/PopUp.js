@@ -27,9 +27,15 @@ export default class PopUp extends Component {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
+                        {this.props.continue &&
+                            <Button onClick={this.props.handleContinue} color="primary">
+                                Continue
+                           </Button>
+                        }
+
                         <Button onClick={this.props.handleClose} color="primary">
-                            Ok
-              </Button>
+                            {this.props.cancel ? "Cancel" : "Ok"}
+                        </Button>
                     </DialogActions>
                 </Dialog>
             </div>
